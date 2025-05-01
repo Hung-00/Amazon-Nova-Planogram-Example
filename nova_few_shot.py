@@ -1,5 +1,3 @@
-# Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
-# SPDX-License-Identifier: Apache-2.0
 import boto3
 import json
 from datetime import datetime
@@ -8,13 +6,11 @@ from pathlib import Path
 from botocore.exceptions import ClientError
 
 
-# Create a Bedrock Runtime client in the AWS Region of your choice.
 client = boto3.client("bedrock-runtime", region_name="us-east-1")
-
 
 MODEL_ID = "amazon.nova-pro-v1:0"
 
-# Define your system prompt(s).
+
 system_list = [
     {
         "text": "You a Planogram Specialist for Uniben, which is a beverage company.\
