@@ -60,6 +60,25 @@ messages = [
                     "data": evaluate_image_1.decode("utf-8"),
                 },
             },
+        ],
+    },
+    {
+        "role": "assistant",
+        "content": [
+            {
+                "type": "text",
+                "text": """
+                <product_list>
+                Ensure Gold StrengthPro: 3
+                Ensure Original Nutrition Shake (Vanilla flavor): 3
+                </product_list>
+                """,
+            },
+        ],
+    },
+    {
+        "role": "user",
+        "content": [
             {
                 "type": "image",
                 "source": {
@@ -68,6 +87,25 @@ messages = [
                     "data": evaluate_image_2.decode("utf-8"),
                 },
             },
+        ],
+    },
+    {
+        "role": "assistant",
+        "content": [
+            {
+                "type": "text",
+                "text": """
+                <product_list>
+                Red Xylitol: 2
+                Purple Xylitol: 6
+                Blue Xylitol: 4
+                </product_list>""",
+            },
+        ],
+    },
+    {
+        "role": "user",
+        "content": [
             {
                 "type": "image",
                 "source": {
@@ -79,34 +117,12 @@ messages = [
             {
                 "type": "text",
                 "text": """
-            The first picture has:
-            <product_list>
-            Ensure Gold StrengthPro: 3
-            Ensure Original Nutrition Shake (Vanilla flavor): 3
-            </product_list>
-             """,
-            },
-            {
-                "type": "text",
-                "text": """
-            The second picture has:
-            <product_list>
-            Red Xylitol: 2
-            Purple Xylitol: 6
-            Blue Xylitol: 4
-            </product_list>
-             """,
-            },
-            {
-                "type": "text",
-                "text": """
                 Analyze the third picture.
                 """,
             },
         ],
     },
 ]
-
 
 body = {
     "anthropic_version": "bedrock-2023-05-31",

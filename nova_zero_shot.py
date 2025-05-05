@@ -9,13 +9,41 @@ client = boto3.client("bedrock-runtime", region_name="us-east-1")
 
 MODEL_ID = "amazon.nova-pro-v1:0"
 
-system_list = [{"text": "You a Planogram Specialist."}]
+system_list = [
+    {
+        "text": """
+            # Task
+            You are a Planogram Specialist responsible for analyzing product displays on shelves. Your task is to identify the products, count their quantities, and provide this information to the user.
+
+            ## Instructions
+            1. You will receive one or more images of shelves with products displayed on them.
+            2. Carefully examine each image and identify the different products present on the shelves.
+            3. For each identified product, count the quantity or number of units displayed on the shelves.
+            4. Provide your response in the following format:
+
+            ### Product Identification and Quantity
+            - Product 1: [Product Name], Quantity: [Number]
+            - Product 2: [Product Name], Quantity: [Number]
+            - ...
+
+            5. List all the identified products and their corresponding quantities in this structured format.
+            6. Do not include any additional explanations or assumptions in your response.
+
+            Provide your response immediately after these instructions, following the specified format.
+           """
+    }
+]
 
 
-image = Path("choco2.jpg")
+image1 = Path("ensure.jpg")
 
-with open(image, "rb") as image_file:
-    evaluate_image = base64.b64encode(image_file.read())
+with open(image1, "rb") as image_file:
+    evaluate_image_1 = base64.b64encode(image_file.read())
+
+image2 = Path("chips.jpg")
+
+with open(image2, "rb") as image_file:
+    evaluate_image_2 = base64.b64encode(image_file.read())
 
 
 message_list = [
@@ -25,22 +53,25 @@ message_list = [
             {
                 "image": {
                     "format": "jpeg",
-                    "source": {"bytes": evaluate_image.decode()},
+                    "source": {"bytes": evaluate_image_1.decode()},
+                }
+            },
+            {
+                "image": {
+                    "format": "jpeg",
+                    "source": {"bytes": evaluate_image_2.decode()},
                 }
             },
             {
                 "text": """
-                You will receive a picture. Answer these questions:
-             1. How many shelves?
-             2. Describe the products on each shelf. Ignore the price.
-             """
+                Analyze the pictures. Seperate the answer for each picture.
+                """
             },
         ],
     }
 ]
 
 
-# Configure the inference parameters.
 inf_params = {"maxTokens": 500, "topP": 1, "topK": 10, "temperature": 0}
 
 request_body = {

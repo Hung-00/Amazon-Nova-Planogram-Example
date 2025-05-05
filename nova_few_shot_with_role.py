@@ -61,12 +61,45 @@ message_list = [
                     "source": {"bytes": evaluate_image_1.decode()},
                 }
             },
+        ],
+    },
+    {
+        "role": "assistant",
+        "content": [
+            {
+                "text": """
+                - Product 1: Ensure Gold StrengthPro:, Quantity: 3
+                - Product 2: Ensure Original Nutrition Shake (Vanilla flavor):, Quantity: 3
+                """,
+            },
+        ],
+    },
+    {
+        "role": "user",
+        "content": [
             {
                 "image": {
                     "format": "jpeg",
                     "source": {"bytes": evaluate_image_2.decode()},
                 }
             },
+        ],
+    },
+    {
+        "role": "assistant",
+        "content": [
+            {
+                "text": """
+                - Product 1: Red Xylitol, Quantity: 2
+                - Product 2: Purple Xylitol, Quantity: 6
+                - Product 3: Blue Xylitol, Quantity: 4
+            """,
+            },
+        ],
+    },
+    {
+        "role": "user",
+        "content": [
             {
                 "image": {
                     "format": "jpeg",
@@ -75,22 +108,11 @@ message_list = [
             },
             {
                 "text": """
-            The first picture has:
-            - Product 1: Ensure Gold StrengthPro:, Quantity: 3
-            - Product 2: Ensure Original Nutrition Shake (Vanilla flavor):, Quantity: 3
-             """
+                Analyze the third picture.
+                """,
             },
-            {
-                "text": """
-            The second picture has:
-            - Product 1: Red Xylitol, Quantity: 2
-            - Product 2: Purple Xylitol, Quantity: 6
-            - Product 3: Blue Xylitol, Quantity: 4
-             """
-            },
-            {"text": "Analyze the third picture."},
         ],
-    }
+    },
 ]
 
 
@@ -135,6 +157,6 @@ if stream:
                 current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S:%f")
 
                 print(content_block_delta.get("delta").get("text"), end="")
-    print(f"Total chunks: {chunk_count}")
+    print(f"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTotal chunks: {chunk_count}")
 else:
     print("No response stream received.")
